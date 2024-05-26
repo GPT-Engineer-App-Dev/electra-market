@@ -1,13 +1,33 @@
-import { Box, Container, Flex, Heading, Text, VStack, Grid, GridItem, Image, Link, Button } from "@chakra-ui/react";
+import { Box, Container, Flex, Heading, Text, VStack, Grid, GridItem, Image, Link, Button, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+import { SearchIcon } from "@chakra-ui/icons";
+
+import { useState } from "react";
 
 const Index = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
   return (
     <Container maxW="container.xl" p={0}>
       {/* Navigation Bar */}
       <Flex as="nav" bg="blue.800" color="white" p={4} justifyContent="space-between" alignItems="center">
         <Heading as="h1" size="lg">ElectroShop</Heading>
-        <Flex>
+        <Flex alignItems="center">
+          <InputGroup size="md" maxW="300px" ml={4}>
+            <Input
+              pr="4.5rem"
+              type="text"
+              placeholder="Search products"
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+            <InputRightElement width="4.5rem">
+              <SearchIcon color="gray.500" />
+            </InputRightElement>
+          </InputGroup>
           <Link href="#" p={2}>Home</Link>
           <Link href="#" p={2}>Products</Link>
           <Link href="#" p={2}>About Us</Link>
