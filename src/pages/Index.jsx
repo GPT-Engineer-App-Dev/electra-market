@@ -1,7 +1,16 @@
-import { Box, Container, Flex, Heading, Text, VStack, Grid, GridItem, Image, Link, Button } from "@chakra-ui/react";
+import { Box, Container, Flex, Heading, Text, VStack, Grid, GridItem, Image, Link, Button, Input, InputGroup, InputRightElement, IconButton } from "@chakra-ui/react";
+import { SearchIcon } from "@chakra-ui/icons";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+import { useState } from "react";
 
 const Index = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = () => {
+    console.log("Searching for:", searchQuery);
+    // Implement the search functionality here
+  };
+
   return (
     <Container maxW="container.xl" p={0}>
       {/* Navigation Bar */}
@@ -12,6 +21,24 @@ const Index = () => {
           <Link href="#" p={2}>Products</Link>
           <Link href="#" p={2}>About Us</Link>
           <Link href="#" p={2}>Contact Us</Link>
+          <InputGroup size="md" maxW="400px" ml={4}>
+            <Input
+              pr="4.5rem"
+              type="text"
+              placeholder="Search for products"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <InputRightElement width="4.5rem">
+              <IconButton
+                h="1.75rem"
+                size="sm"
+                onClick={handleSearch}
+                icon={<SearchIcon />}
+                aria-label="Search"
+              />
+            </InputRightElement>
+          </InputGroup>
         </Flex>
       </Flex>
 
